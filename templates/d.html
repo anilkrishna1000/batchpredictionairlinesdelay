@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>SINGLE RECORD PREDICTION</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/DD.css') }}">
+<style>
+body {
+  background-image: url({{ url_for('static',filename='kk/pl.jpg')}});
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+</head>
+
+<body>
+ <div class="login">
+	<h1>Predict flight delay</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+
+         <h5 class="card-title">Which Airline you want to travel?</h5>
+                            <!-- Airline -->
+                            <select name="AIRLINE" id="AIRLINE" required="required">
+                                <option value="0">AA</option>
+                                <option value="1">AS</option>
+                                <option value="2">B6</option>
+                                <option value="3">DL</option>
+                                <option value="4">EV</option>
+                                <option value="5">F9</option>
+                                <option value="6">HA</option>
+                                <option value="7">MQ</option>
+                                <option value="8">NK</option>
+                                <option value="9">OO</option>
+                                <option value="10">UA</option>
+                                <option value="11">US</option>
+                                <option value="12">VX</option>
+                                <option value="13">WN</option>
+                            </select>
+
+        
+        <input type="text" name="MONTH" placeholder="MONTH" required="required" />
+        <input type="text" name="DAY" placeholder="DAY" required="required" />
+		<input type="text" name="DAY_OF_WEEK" placeholder="DAY_OF_WEEK" required="required" />
+        <input type="text" name="SCHEDULED_DEPARTURE" placeholder="SCHEDULED_DEPARTURE" required="required" />
+        <input type="text" name="DEPARTURE_TIME" placeholder="DEPARTURE_TIME" required="required" />
+        <input type="text" name="TAXI_OUT" placeholder="TAXI_OUT" required="required" />
+        <input type="text" name="DISTANCE" placeholder="DISTANCE" required="required" />
+        <input type="text" name="TAXI_IN" placeholder="TAXI_IN" required="required" />
+        <input type="text" name="SCHEDULED_ARRIVAL" placeholder="SCHEDULED_ARRIVAL" required="required" />
+        <input type="text" name="ARRIVAL_DELAY" placeholder="ARRIVAL_DELAY" required="required" />
+
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
